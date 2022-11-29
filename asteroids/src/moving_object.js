@@ -29,4 +29,4 @@ MovingObject.prototype.draw = function(ctx) {
     ctx.fill();
 }
 
-module.exports = MovingObject;
+export default MovingObject;

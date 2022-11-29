@@ -7,7 +7,18 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/asteroid.js":
+/*!*************************!*\
+  !*** ./src/asteroid.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\n\nclass Asteroid extends _moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n    constructor(moHash) {\n        super(moHash)\n        //pass in rand vel\n        // pass ranom pos\n\n        this.color = \"blue\"\n        this.radius = 10\n\n    }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Asteroid);\n\n\n\n// let pos = [Math.floor(Math.random() * 500), Math.floor(Math.random() * 500)]\n// let vel = [Math.floor((Math.random() * 60) - 30), Math.floor((Math.random() * 60) - 30)]\n// moHash[\"vel\"] = vel\n// moHash[\"pos\"] = pos\n\n//# sourceURL=webpack://asteroids/./src/asteroid.js?");
+
+/***/ }),
 
 /***/ "./src/game.js":
 /*!*********************!*\
@@ -15,8 +26,7 @@
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Asteroids)\n/* harmony export */ });\nclass Asteroids {\n    constructor(canvas, mo) {\n        this.ctx = canvas.getContext(\"2d\");\n        this.canvas = canvas\n        this.dimensions = { width: canvas.width, height: canvas.height };\n        // this.registerEvents();\n        // this.restart();\n        this.mo = mo;\n    }\n    play(){\n        this.mo.draw(this.ctx)\n        this.mo.move(this.ctx)\n    }\n    animate(){\n        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)\n        this.play()\n        requestAnimationFrame(this.animate.bind(this))\n    }\n}\n\n\n//# sourceURL=webpack://asteroids/./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _asteroid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./asteroid */ \"./src/asteroid.js\");\n\r\n\r\nclass Game {\r\n    constructor(canvas) {\r\n        this.ctx = canvas.getContext(\"2d\");\r\n        this.canvas = canvas\r\n        this.dimensions = { width: canvas.width, height: canvas.height };\r\n        // this.registerEvents();\r\n        // this.restart();\r\n        this.asteroids = this.asteroidPrinter()\r\n    }\r\n\r\n    play(){\r\n        for (let i = 0; i < this.asteroids.length; i++) {\t\r\n            let asteroid = this.asteroids[i]\r\n            asteroid.draw(this.ctx)\r\n            asteroid.move(this.ctx)\r\n        }\r\n    }\r\n\r\n    asteroidPrinter() {\r\n        let astArr = []\r\n        \r\n        \r\n        for (let i = 0; i < 5; i++) {\r\n            let moHash = {}\r\n            let pos = [Math.floor(Math.random() * 500), Math.floor(Math.random() * 500)]\r\n            let vel = [Math.floor((Math.random() * 60) - 30), Math.floor((Math.random() * 60) - 30)]\r\n            moHash[\"vel\"] = vel\r\n            moHash[\"pos\"] = pos\r\n            astArr.push(new _asteroid__WEBPACK_IMPORTED_MODULE_0__[\"default\"](moHash))\r\n        }\r\n        return astArr\r\n    }\r\n\r\n    animate(){\r\n        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)\r\n        this.play()\r\n        requestAnimationFrame(this.animate.bind(this))\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Game);\r\n\n\n//# sourceURL=webpack://asteroids/./src/game.js?");
 
 /***/ }),
 
@@ -26,8 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\nlet canvas = document.getElementById(\"game-canvas\")\n// const ctx = can.getContext(\"2d\")\n\nconst mo = new MovingObject({\n    pos: [60, 60],\n    vel: [10, 10],\n    radius: 5,\n    color: \"#00FF00\"\n})\n\nconst g = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas, mo);\ng.animate();\n\n\n//# sourceURL=webpack://asteroids/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ \"./src/utils.js\");\n\r\n\r\n\r\nlet canvas = document.getElementById(\"game-canvas\")\r\n\r\n// Util.inherits(Asteroid, MovingObject)\r\nconst g = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas);\r\ng.animate();\r\n\r\n\r\n\r\n\r\n\r\n// const ctx = can.getContext(\"2d\")\r\n\r\n// const mo = new MovingObject({\r\n//     pos: [60, 60],\r\n//     vel: [10, 10],\r\n//     radius: 5,\r\n//     color: \"#00FF00\"\r\n// })\r\n\n\n//# sourceURL=webpack://asteroids/./src/index.js?");
 
 /***/ }),
 
@@ -35,9 +44,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gam
 /*!******************************!*\
   !*** ./src/moving_object.js ***!
   \******************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("\nclass MovingObject {\n    constructor(moHash) {\n    this.pos = moHash.pos\n    this.vel = moHash.vel\n    this.radius = moHash.radius\n    this.color = moHash.color\n    }\n}\n\nMovingObject.prototype.move = function(ctx){\n    this.pos[0] += this.vel[0]\n    this.pos[1] += this.vel[1]\n}\n\nMovingObject.prototype.draw = function(ctx) {\n    ctx.fillStyle = this.color;\n    ctx.beginPath();\n\n    ctx.arc(\n        this.pos[0],\n        this.pos[1],\n        this.radius,\n        0,\n        2 * Math.PI,\n        false\n    );\n\n    ctx.fill();\n}\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack://asteroids/./src/moving_object.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\r\nclass MovingObject {\r\n    constructor(moHash) {\r\n    this.pos = moHash.pos\r\n    this.vel = moHash.vel\r\n    this.radius = moHash.radius\r\n    this.color = moHash.color\r\n    }\r\n}\r\n\r\nMovingObject.prototype.move = function(ctx){\r\n    this.pos[0] += this.vel[0]\r\n    this.pos[1] += this.vel[1]\r\n}\r\n\r\nMovingObject.prototype.draw = function(ctx) {\r\n    ctx.fillStyle = this.color;\r\n    ctx.beginPath();\r\n\r\n    ctx.arc(\r\n        this.pos[0],\r\n        this.pos[1],\r\n        this.radius,\r\n        0,\r\n        2 * Math.PI,\r\n        false\r\n    );\r\n\r\n    ctx.fill();\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MovingObject);\r\n\n\n//# sourceURL=webpack://asteroids/./src/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Util {\n    inherits(childClass, parentClass) {\n        function Sur(){}\n        Sur.prototype = parentClass.prototype\n        childClass.prototype = new Sur()\n        childClass.prototype.constructor = childClass\n    }\n\n \n    randomVec(length) {\n        const deg = 2 * Math.PI * Math.random();\n        return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n    }\n        \n    scale(vec, m) {\n        return [vec[0] * m, vec[1] * m];\n    }\n\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Util);\n\n//# sourceURL=webpack://asteroids/./src/utils.js?");
 
 /***/ })
 
