@@ -8,13 +8,18 @@ class MovingObject {
     }
 }
 
+MovingObject.prototype.move = function(ctx){
+    this.pos[0] += this.vel[0]
+    this.pos[1] += this.vel[1]
+}
+
 MovingObject.prototype.draw = function(ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
     ctx.arc(
-        100,
-        35,
+        this.pos[0],
+        this.pos[1],
         this.radius,
         0,
         2 * Math.PI,
@@ -23,9 +28,5 @@ MovingObject.prototype.draw = function(ctx) {
 
     ctx.fill();
 }
-
-
-
-
 
 module.exports = MovingObject;

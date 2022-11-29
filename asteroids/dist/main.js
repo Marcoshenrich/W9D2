@@ -9,13 +9,25 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Asteroids)\n/* harmony export */ });\nclass Asteroids {\n    constructor(canvas, mo) {\n        this.ctx = canvas.getContext(\"2d\");\n        this.canvas = canvas\n        this.dimensions = { width: canvas.width, height: canvas.height };\n        // this.registerEvents();\n        // this.restart();\n        this.mo = mo;\n    }\n    play(){\n        this.mo.draw(this.ctx)\n        this.mo.move(this.ctx)\n    }\n    animate(){\n        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)\n        this.play()\n        requestAnimationFrame(this.animate.bind(this))\n    }\n}\n\n\n//# sourceURL=webpack://asteroids/./src/game.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\nlet can = document.getElementById(\"game-canvas\")\nconsole.log(can)\nconst ctx = can.getContext(\"2d\")\n\nconst mo = new MovingObject({\n    pos: [30, 30],\n    vel: [10, 10],\n    radius: 5,\n    color: \"#00FF00\"\n})\n\nmo.draw(ctx)\n\n\n//# sourceURL=webpack://asteroids/./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\nconst MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src/moving_object.js\");\nwindow.MovingObject = MovingObject;\n\nlet canvas = document.getElementById(\"game-canvas\")\n// const ctx = can.getContext(\"2d\")\n\nconst mo = new MovingObject({\n    pos: [60, 60],\n    vel: [10, 10],\n    radius: 5,\n    color: \"#00FF00\"\n})\n\nconst g = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas, mo);\ng.animate();\n\n\n//# sourceURL=webpack://asteroids/./src/index.js?");
 
 /***/ }),
 
@@ -25,7 +37,7 @@ eval("const MovingObject = __webpack_require__(/*! ./moving_object.js */ \"./src
   \******************************/
 /***/ ((module) => {
 
-eval("\nclass MovingObject {\n    constructor(moHash) {\n    this.pos = moHash.pos\n    this.vel = moHash.vel\n    this.radius = moHash.radius\n    this.color = moHash.color\n    }\n}\n\nMovingObject.prototype.draw = function(ctx) {\n    ctx.fillStyle = this.color;\n    ctx.beginPath();\n\n    ctx.arc(\n        100,\n        35,\n        this.radius,\n        0,\n        2 * Math.PI,\n        false\n    );\n\n    ctx.fill();\n}\n\n\n\n\n\nmodule.exports = MovingObject;\n\n//# sourceURL=webpack://asteroids/./src/moving_object.js?");
+eval("\nclass MovingObject {\n    constructor(moHash) {\n    this.pos = moHash.pos\n    this.vel = moHash.vel\n    this.radius = moHash.radius\n    this.color = moHash.color\n    }\n}\n\nMovingObject.prototype.move = function(ctx){\n    this.pos[0] += this.vel[0]\n    this.pos[1] += this.vel[1]\n}\n\nMovingObject.prototype.draw = function(ctx) {\n    ctx.fillStyle = this.color;\n    ctx.beginPath();\n\n    ctx.arc(\n        this.pos[0],\n        this.pos[1],\n        this.radius,\n        0,\n        2 * Math.PI,\n        false\n    );\n\n    ctx.fill();\n}\n\nmodule.exports = MovingObject;\n\n\n//# sourceURL=webpack://asteroids/./src/moving_object.js?");
 
 /***/ })
 
@@ -54,6 +66,35 @@ eval("\nclass MovingObject {\n    constructor(moHash) {\n    this.pos = moHash.p
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	
