@@ -8,11 +8,24 @@ class MovingObject {
     }
 }
 
-const mo = new MovingObject({
-    pos: [30, 30],
-    vel: [10, 10],
-    radius: 5,
-    color: "#00FF00"
-})
+MovingObject.prototype.draw = function(ctx) {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+
+    ctx.arc(
+        100,
+        35,
+        this.radius,
+        0,
+        2 * Math.PI,
+        false
+    );
+
+    ctx.fill();
+}
+
+
+
+
 
 module.exports = MovingObject;
