@@ -6,7 +6,7 @@ class Asteroid extends MovingObject {
         //pass in rand vel
         // pass ranom pos
 
-        this.color = "blue"
+        
         this.radius = 10
 
     }
